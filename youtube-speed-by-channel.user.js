@@ -1,9 +1,10 @@
 // ==UserScript==
 // @name         Youtube Speed By Channel
-// @namespace    Alpe
-// @version      0.2.4
+// @namespace    Permanent
+// @version      2021-01-26
 // @description  Allow to choose the default speed for specific YT channel
-// @author       Alpe
+// @author       Alpe (≤0.2.4)
+// @author       Allan Laal (≥2021-01-26)
 // @include      https://www.youtube.com/*
 // @grant        GM.setValue
 // @grant        GM.getValue
@@ -234,10 +235,12 @@
         div.style.paddingBottom = "0px";
         div.style.float = "left";
 
-        div.innerHTML += '<span style="margin-right: 10px; font-weight: bold; font-size: 80%; color: white; cursor: pointer;" title="Set current speed as default for this channel">setdefault</span>';
         BUTTON_TEMPLATES.forEach(function(button){
-            div.innerHTML += '<span style="margin-right: 10px; font-weight: bold; font-size: 80%; color: ' + (curspeed === button[1] ? COLOR_SELECTED : COLOR_NORMAL) + '; cursor: pointer;" speed="' + button[1] + '">' + button[0] + '</span>';
+            div.innerHTML += '<span style="margin-right: 10px; font-weight: bold; font-size: 100%; color: ' + (curspeed === button[1] ? COLOR_SELECTED : COLOR_NORMAL) + '; cursor: pointer;" speed="' + button[1] + '">' + button[0] + '</span>';
         });
+
+        div.innerHTML += '<span style="margin-right: 10px; font-weight: bold; font-size: 100%; color: white; cursor: pointer;" title="Set current speed as default for this channel">💾</span>';
+
 
         $('span:not([title])', div).on( "click", buttonclick);
         $('span[title]', div).on( "click", setchanneldefault);
@@ -448,4 +451,3 @@
     }
     window.addEventListener('load', mark_loop);
 })();
-
